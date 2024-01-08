@@ -1,0 +1,19 @@
+package components
+
+import "github.com/milkymilky0116/go-todoapps/internal/db"
+
+type CardProps struct {
+	Todo db.Todo
+}
+
+templ Card(props CardProps) {
+	<div>
+		if props.Todo.IsComplete {
+			<del>
+				<p>{ props.Todo.Context }</p>
+			</del>
+		} else {
+			<p>{ props.Todo.Context }</p>
+		}
+	</div>
+}

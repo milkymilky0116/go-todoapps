@@ -1,0 +1,27 @@
+package layout
+
+import "github.com/milkymilky0116/go-todoapps/internal/db"
+import "github.com/milkymilky0116/go-todoapps/views/components"
+
+templ Base(todos []db.Todo) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>Document</title>
+			<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+		</head>
+		<body>
+			<div id="todos">
+				for _,todo := range todos {
+					@components.Card(components.CardProps{
+          Todo:todo, 
+        })
+				}
+			</div>
+			<button hx-post="/add" hx-target="#todos" hx-swap="beforeend">Add Todo</button>
+			<button hx-delete="/delete" hx-target="#todos" hx-swap="outerHTML" hx-select="#todos">Delete Todo</button>
+		</body>
+	</html>
+}
