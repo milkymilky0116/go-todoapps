@@ -9,12 +9,6 @@ import (
 	"github.com/milkymilky0116/go-todoapps/internal/db"
 )
 
-type Application struct {
-	DB      *db.DB
-	Port    int
-	Handler *echo.Echo
-}
-
 func InitApp() {
 	app := Application{}
 	app.Port = 3000

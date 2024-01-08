@@ -1,6 +1,7 @@
 package todo
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/milkymilky0116/go-todoapps/internal/db"
@@ -14,10 +15,11 @@ func (s *TodoService) List() []db.Todo {
 	return s.DB.Todos
 }
 
-func (s *TodoService) Add() db.Todo {
+func (s *TodoService) Add(length int) db.Todo {
+	newContext := fmt.Sprintf("This is new todo #%d", length)
 	newTodo := db.Todo{
 		Id:        5,
-		Context:   "this is new todo",
+		Context:   newContext,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}

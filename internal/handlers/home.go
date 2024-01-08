@@ -1,8 +1,12 @@
 package handlers
 
 import (
+	"errors"
+	"log"
+
 	"github.com/labstack/echo/v4"
 	"github.com/milkymilky0116/go-todoapps/internal/todo"
+	"github.com/milkymilky0116/go-todoapps/internal/types"
 	"github.com/milkymilky0116/go-todoapps/internal/utils"
 	"github.com/milkymilky0116/go-todoapps/views/components"
 	"github.com/milkymilky0116/go-todoapps/views/layout"
@@ -21,7 +25,12 @@ func (h *HomeHandler) Home(ctx echo.Context) error {
 }
 
 func (h *HomeHandler) Add(ctx echo.Context) error {
-	newTodo := h.TodoService.Add()
+	state, ok := ctx.Get("state").(*types.State)
+	if !ok {
+		ctx.Error(errors.New("context error"))
+	}
+	log.Println(state)
+	newTodo := h.TodoService.Add(state.Length + 1)
 	todoComponents := components.Card(components.CardProps{
 		Todo: newTodo,
 	})
