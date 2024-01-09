@@ -7,11 +7,16 @@ templ Base(todos []db.Todo) {
 	<!DOCTYPE html>
 	<html lang="en">
 		@header()
-		<body>
+		<body hx-ext="response-targets">
 			@components.Wrapper() {
+				<h1>Hello? This is test. another test.</h1>
 				@components.Todos(todos)
-				<button hx-post="/add" hx-target="#todos" hx-swap="beforeend">Add Todo</button>
+				<form hx-ext="response-targets" hx-post="/add" hx-target="#todos" hx-swap="outerHTML" hx-target-5*="#msg">
+					<input type="text" name="context" placeholder="write todo..."/>
+					<button>Add Todo</button>
+				</form>
 				<button hx-delete="/delete" hx-target="#todos" hx-swap="outerHTML">Delete Todo</button>
+				<p id="msg"></p>
 			}
 		</body>
 	</html>

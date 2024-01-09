@@ -1,4 +1,5 @@
 run:
-	@bun run tailwindcss -i ./views/static/input.css -o ./views/static/output.css 
+	@bun run build
+	@bun run tailwindcss -i ./views/static/css/input.css -o ./views/static/css/output.css 
 	@templ generate
-	@go run cmd/web/main.go
+	@go build -o ./tmp/main ./cmd/web/main.go

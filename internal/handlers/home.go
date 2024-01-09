@@ -3,6 +3,7 @@ package handlers
 import (
 	"errors"
 	"log"
+	"net/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/milkymilky0116/go-todoapps/internal/todo"
@@ -25,16 +26,21 @@ func (h *HomeHandler) Home(ctx echo.Context) error {
 }
 
 func (h *HomeHandler) Add(ctx echo.Context) error {
+	context := ctx.FormValue("context")
+	if context == "" {
+		errorMsg := components.ErrorMsg("invalid form value")
+		ctx.Response().Status = http.StatusInternalServerError
+		return utils.Render(ctx, errorMsg)
+	}
 	state, ok := ctx.Get("state").(*types.State)
 	if !ok {
 		ctx.Error(errors.New("context error"))
 	}
 	log.Println(state)
-	newTodo := h.TodoService.Add(state.Length + 1)
-	todoComponents := components.Card(components.CardProps{
-		Todo: newTodo,
-	})
-	return utils.Render(ctx, todoComponents)
+	h.TodoService.Add(state.Length+1, context)
+
+	todosComponents := components.Todos(h.TodoService.List())
+	return utils.Render(ctx, todosComponents)
 }
 
 func (h *HomeHandler) Delete(ctx echo.Context) error {

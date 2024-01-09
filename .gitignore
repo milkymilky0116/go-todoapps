@@ -199,4 +199,7 @@ go.work
 
 # End of https://www.toptal.com/developers/gitignore/api/go
 #
-views/static/output.css
+views/static/css/output.css
+views/static/js/*.js
+views/static/js/*.cjs
+/tmp
