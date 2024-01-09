@@ -50,7 +50,7 @@ func header() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</script><link href=\"/static/css/output.css\" rel=\"stylesheet\"><script src=\"/static/js/go-todoapps.umd.cjs\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</script><link href=\"/static/css/output.css\" rel=\"stylesheet\"><script src=\"/static/js/main.umd.cjs\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
