@@ -13,7 +13,7 @@ func (app *Application) InitRoutes() {
 	}
 	homeHandler := handlers.NewHomeHandler(todoService)
 	stateMiddleware := middlewares.NewStateLoaderMiddleware(app.DB)
-
+	app.Handler.Static("/static", "views/static")
 	app.Handler.Use(middleware.Logger())
 	app.Handler.Use(stateMiddleware.StateLoading)
 	app.Handler.GET("/", homeHandler.Home)

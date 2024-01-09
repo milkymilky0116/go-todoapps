@@ -42,9 +42,8 @@ func (h *HomeHandler) Delete(ctx echo.Context) error {
 
 	todos := h.TodoService.List()
 
-	layout := layout.Base(todos)
-
-	return utils.Render(ctx, layout)
+	todoBoard := components.Todos(todos)
+	return utils.Render(ctx, todoBoard)
 }
 
 func NewHomeHandler(service todo.TodoService) *HomeHandler {

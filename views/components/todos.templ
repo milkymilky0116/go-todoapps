@@ -1,0 +1,13 @@
+package components
+
+import "github.com/milkymilky0116/go-todoapps/internal/db"
+
+templ Todos(todos []db.Todo) {
+	<div id="todos" class="flex flex-col justify-center items-center w-1/2 gap-4">
+		for _, todo := range todos {
+			@Card(CardProps{
+    Todo:todo,
+    })
+		}
+	</div>
+}
