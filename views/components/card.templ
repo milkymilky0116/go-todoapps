@@ -7,7 +7,7 @@ type CardProps struct {
 }
 
 templ Card(props CardProps) {
-	<div class="w-1/2 h-14 bg-red-50 border-solid border-1 border-white p-3 flex justify-center items-center">
+	<div id={ props.Todo.CreatedAt.String() } class="w-1/2 h-14 bg-red-50 border-solid border-1 border-white p-3 flex justify-center items-center">
 		if props.Todo.IsComplete {
 			<p class="line-through">{ props.Todo.Context }</p>
 		} else {
