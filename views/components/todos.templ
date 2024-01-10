@@ -1,11 +1,12 @@
 package components
 
 import "github.com/milkymilky0116/go-todoapps/internal/db"
+import "github.com/milkymilky0116/go-todoapps/views/components/card"
 
 templ Todos(todos []db.Todo) {
 	<ul id="todos" class="space-y-4">
 		for _, todo := range todos {
-			@Card(CardProps{
+			@card.Card(card.CardProps{
     Todo:todo,
     })
 		}

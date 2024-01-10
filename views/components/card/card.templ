@@ -1,0 +1,21 @@
+package card 
+
+import "github.com/milkymilky0116/go-todoapps/internal/db"
+import "fmt"
+
+type CardProps struct {
+	Todo db.Todo
+}
+
+templ Card(props CardProps) {
+	<li class="flex items-center gap-4 border-2 border-white rounded-md p-2" id={ fmt.Sprintf("todo-%d", props.Todo.Id) }>
+		if props.Todo.IsEditable {
+			@EditInput(props)
+		} else {
+			@Label(props)
+		}
+		@CheckButton(props)
+		@EditButton(props)
+		@DeleteButton(props)
+	</li>
+}

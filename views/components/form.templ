@@ -2,7 +2,6 @@ package components
 
 templ Form() {
 	<form class="flex items-center gap-4 mb-6" hx-post="/add" hx-target="#todos" hx-swap="outerHTML" hx-target-5*="#msg">
-		<p id="msg"></p>
 		<input
 			id="context"
 			type="text"
@@ -14,4 +13,5 @@ templ Form() {
 			Add
 		</button>
 	</form>
+	@ErrorMsg("")
 }

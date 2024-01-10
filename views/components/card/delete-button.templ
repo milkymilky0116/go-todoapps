@@ -1,0 +1,29 @@
+package card 
+
+import "fmt"
+
+templ DeleteButton(props CardProps) {
+	<button
+		class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-white hover:text-accent-foreground h-10 w-10"
+		hx-delete={ fmt.Sprintf("/delete/%d", props.Todo.Id) }
+		hx-target="#todos"
+		hx-swap="outerHTML"
+	>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			class="w-5 h-5 text-green-700"
+		>
+			<path d="M3 6h18"></path>
+			<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+			<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+		</svg>
+	</button>
+}

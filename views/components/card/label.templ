@@ -1,0 +1,14 @@
+package card 
+
+templ Label(props CardProps) {
+	<label
+		class="pl-3 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex-1"
+		for="task-1"
+	>
+		if props.Todo.IsComplete {
+			<p class="line-through font-bold text-red-500">{ props.Todo.Context }</p>
+		} else {
+			<p>{ props.Todo.Context }</p>
+		}
+	</label>
+}

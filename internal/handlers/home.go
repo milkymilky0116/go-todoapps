@@ -11,6 +11,7 @@ import (
 	"github.com/milkymilky0116/go-todoapps/internal/types"
 	"github.com/milkymilky0116/go-todoapps/internal/utils"
 	"github.com/milkymilky0116/go-todoapps/views/components"
+	"github.com/milkymilky0116/go-todoapps/views/components/card"
 	"github.com/milkymilky0116/go-todoapps/views/layout"
 )
 
@@ -65,7 +66,7 @@ func (h *HomeHandler) ToggleComplete(ctx echo.Context) error {
 
 	todo := h.TodoService.Find(id)
 
-	todoComponent := components.Card(components.CardProps{
+	todoComponent := card.Card(card.CardProps{
 		Todo: *todo,
 	})
 	return utils.Render(ctx, todoComponent, http.StatusOK)
@@ -76,7 +77,7 @@ func (h *HomeHandler) ToggleEdit(ctx echo.Context) error {
 
 	todo := h.TodoService.ToggleEdit(id)
 
-	todoComponent := components.Card(components.CardProps{
+	todoComponent := card.Card(card.CardProps{
 		Todo: *todo,
 	})
 
@@ -90,7 +91,7 @@ func (h *HomeHandler) UpdateContext(ctx echo.Context) error {
 	todo := h.TodoService.Update(id, context)
 	todo.IsEditable = false
 	todo.IsComplete = false
-	todoComponent := components.Card(components.CardProps{
+	todoComponent := card.Card(card.CardProps{
 		Todo: *todo,
 	})
 

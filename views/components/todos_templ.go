@@ -11,6 +11,7 @@ import "io"
 import "bytes"
 
 import "github.com/milkymilky0116/go-todoapps/internal/db"
+import "github.com/milkymilky0116/go-todoapps/views/components/card"
 
 func Todos(todos []db.Todo) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
@@ -30,7 +31,7 @@ func Todos(todos []db.Todo) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for _, todo := range todos {
-			templ_7745c5c3_Err = Card(CardProps{
+			templ_7745c5c3_Err = card.Card(card.CardProps{
 				Todo: todo,
 			}).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
