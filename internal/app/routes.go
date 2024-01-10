@@ -18,5 +18,8 @@ func (app *Application) InitRoutes() {
 	app.Handler.Use(stateMiddleware.StateLoading)
 	app.Handler.GET("/", homeHandler.Home)
 	app.Handler.POST("/add", homeHandler.Add)
-	app.Handler.DELETE("/delete", homeHandler.Delete)
+	app.Handler.DELETE("/delete/:id", homeHandler.Delete)
+	app.Handler.PUT("/toggle/:id", homeHandler.ToggleComplete)
+	app.Handler.PUT("/edit-toggle/:id", homeHandler.ToggleEdit)
+	app.Handler.PUT("/edit/:id", homeHandler.UpdateContext)
 }

@@ -6,6 +6,7 @@ type Todo struct {
 	Id         int
 	Context    string
 	IsComplete bool
+	IsEditable bool
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
 }
@@ -20,6 +21,7 @@ func InitDB() *DB {
 			Id:         1,
 			Context:    "Test",
 			IsComplete: false,
+			IsEditable: false,
 			CreatedAt:  time.Now(),
 			UpdatedAt:  time.Now(),
 		},
@@ -27,6 +29,7 @@ func InitDB() *DB {
 			Id:         2,
 			Context:    "Test2",
 			IsComplete: false,
+			IsEditable: false,
 			CreatedAt:  time.Now(),
 			UpdatedAt:  time.Now(),
 		},
@@ -34,6 +37,7 @@ func InitDB() *DB {
 			Id:         3,
 			Context:    "Test3",
 			IsComplete: false,
+			IsEditable: false,
 			CreatedAt:  time.Now(),
 			UpdatedAt:  time.Now(),
 		},
@@ -41,6 +45,7 @@ func InitDB() *DB {
 			Id:         4,
 			Context:    "Test4",
 			IsComplete: true,
+			IsEditable: false,
 			CreatedAt:  time.Now(),
 			UpdatedAt:  time.Now(),
 		},

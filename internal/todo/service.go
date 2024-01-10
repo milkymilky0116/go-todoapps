@@ -16,10 +16,11 @@ func (s *TodoService) List() []db.Todo {
 
 func (s *TodoService) Add(id int, context string) db.Todo {
 	newTodo := db.Todo{
-		Id:        id,
-		Context:   context,
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
+		Id:         id,
+		Context:    context,
+		IsComplete: false,
+		CreatedAt:  time.Now(),
+		UpdatedAt:  time.Now(),
 	}
 
 	s.DB.Todos = append(s.DB.Todos, newTodo)
@@ -27,10 +28,52 @@ func (s *TodoService) Add(id int, context string) db.Todo {
 	return newTodo
 }
 
-func (s *TodoService) Delete() db.Todo {
-	deletedTodo := s.DB.Todos[len(s.DB.Todos)-1]
+func (s *TodoService) Find(id int) *db.Todo {
+	for _, todo := range s.DB.Todos {
+		if todo.Id == id {
+			return &todo
+		}
+	}
+	return nil
+}
 
-	s.DB.Todos = s.DB.Todos[:len(s.DB.Todos)-1]
+func (s *TodoService) Delete(id int) *db.Todo {
+	for index, todo := range s.DB.Todos {
+		if todo.Id == id {
+			s.DB.Todos = append(s.DB.Todos[:index], s.DB.Todos[index+1:]...)
+			return &todo
+		}
+	}
+	return nil
+}
 
-	return deletedTodo
+func (s *TodoService) ToggleComplete(id int) *db.Todo {
+	for index, todo := range s.DB.Todos {
+		if todo.Id == id {
+			s.DB.Todos[index].IsComplete = !todo.IsComplete
+			return &s.DB.Todos[index]
+		}
+	}
+	return nil
+}
+
+func (s *TodoService) ToggleEdit(id int) *db.Todo {
+	for index, todo := range s.DB.Todos {
+		if todo.Id == id {
+			s.DB.Todos[index].IsEditable = !todo.IsEditable
+			return &s.DB.Todos[index]
+		}
+	}
+	return nil
+}
+
+func (s *TodoService) Update(id int, context string) *db.Todo {
+	for index, todo := range s.DB.Todos {
+		if todo.Id == id {
+			s.DB.Todos[index].Context = context
+			return &s.DB.Todos[index]
+		}
+	}
+
+	return nil
 }

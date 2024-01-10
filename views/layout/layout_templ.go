@@ -44,29 +44,34 @@ func Base(todos []db.Todo) templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
+			templ_7745c5c3_Err = components.Form().Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			templ_7745c5c3_Err = components.Todos(todos).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" <form hx-ext=\"response-targets\" hx-post=\"/add\" hx-target=\"#todos\" hx-swap=\"outerHTML\" hx-target-5*=\"#msg\"><input type=\"text\" name=\"context\" placeholder=\"write todo...\"> <button>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" <!--")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var3 := `Add Todo`
+			templ_7745c5c3_Var3 := `
+        <form hx-ext="response-targets" hx-post="/add" hx-target="#todos" hx-swap="outerHTML" hx-target-5*="#msg">
+					<input type="text" name="context" placeholder="write todo..."/>
+					<button>Add Todo</button>
+					<button hx-delete="/delete" hx-target="#todos" hx-swap="outerHTML">Delete Todo</button>
+				</form>
+        <p id="msg"></p> `
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var3)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</button> <button hx-delete=\"/delete\" hx-target=\"#todos\" hx-swap=\"outerHTML\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var4 := `Delete Todo`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</button></form><p id=\"msg\"></p>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("-->")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
